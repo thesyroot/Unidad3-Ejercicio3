@@ -1,6 +1,7 @@
 package com.programacion4.unidad3ej3.feature.producto.mappers;
 
 import com.programacion4.unidad3ej3.feature.producto.dtos.request.ProductoCreateRequestDto;
+import com.programacion4.unidad3ej3.feature.producto.dtos.request.ProductoUpdateRequestDto;
 import com.programacion4.unidad3ej3.feature.producto.dtos.response.ProductoResponseDto;
 import com.programacion4.unidad3ej3.feature.producto.models.Producto;
 
@@ -8,6 +9,28 @@ public class ProductoMapper {
     
     public static Producto toEntity(ProductoCreateRequestDto dto) {
         Producto producto = new Producto();
+        producto.setNombre(dto.getNombre());
+        producto.setCodigo(dto.getCodigo());
+        producto.setDescripcion(dto.getDescripcion());
+        producto.setPrecio(dto.getPrecio());
+        producto.setStock(dto.getStock());
+        return producto;
+    }
+
+    public static Producto toEntityWithId(long id, ProductoResponseDto dto) {
+        Producto producto = new Producto();
+        producto.setId(id);
+        producto.setNombre(dto.getNombre());
+        producto.setCodigo(dto.getCodigo());
+        producto.setDescripcion(dto.getDescripcion());
+        producto.setPrecio(dto.getPrecio());
+        producto.setStock(dto.getStock());
+        return producto;
+    }
+
+    public static Producto toEntityWithId(long id, ProductoUpdateRequestDto dto) {
+        Producto producto = new Producto();
+        producto.setId(id);
         producto.setNombre(dto.getNombre());
         producto.setCodigo(dto.getCodigo());
         producto.setDescripcion(dto.getDescripcion());
