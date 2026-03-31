@@ -26,4 +26,6 @@ public class ProductoCreateRequestDto {
     @NotNull(message = "El stock es requerido")
     private Integer stock;
 
+    @NotNull(message = "La categoria es requerida")
+    private long idCategoria;
 }

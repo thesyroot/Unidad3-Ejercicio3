@@ -4,9 +4,14 @@ import com.programacion4.unidad3ej3.feature.producto.dtos.request.ProductoCreate
 import com.programacion4.unidad3ej3.feature.producto.dtos.request.ProductoUpdateRequestDto;
 import com.programacion4.unidad3ej3.feature.producto.dtos.response.ProductoResponseDto;
 import com.programacion4.unidad3ej3.feature.producto.models.Producto;
+import com.programacion4.unidad3ej3.feature.producto.repositories.ICatalogoRepository;
+import lombok.AllArgsConstructor;
 
+@AllArgsConstructor
 public class ProductoMapper {
-    
+
+    private final ICatalogoRepository catalogoRepository;
+
     public static Producto toEntity(ProductoCreateRequestDto dto) {
         Producto producto = new Producto();
         producto.setNombre(dto.getNombre());
@@ -47,6 +52,9 @@ public class ProductoMapper {
         dto.setDescripcion(producto.getDescripcion());
         dto.setPrecio(producto.getPrecio());
         dto.setStock(producto.getStock());
+        dto.setCatalogo(
+                CatalogoMapper.toResponseDto(producto.getCatalogo())
+        );
         return dto;
     }
 }

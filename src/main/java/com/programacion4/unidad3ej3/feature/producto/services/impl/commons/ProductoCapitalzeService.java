@@ -16,7 +16,8 @@ public class ProductoCapitalzeService implements IProductoCapitalizeService {
                 dto.getCodigo(),
                 dto.getDescripcion().substring(0,0).toUpperCase() + dto.getDescripcion().substring(1).toLowerCase(),
                 dto.getPrecio(),
-                dto.getStock()
+                dto.getStock(),
+                dto.getIdCategoria()
         );
     }
 }

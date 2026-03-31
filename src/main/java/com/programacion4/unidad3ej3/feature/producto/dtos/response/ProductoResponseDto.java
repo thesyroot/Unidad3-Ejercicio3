@@ -1,5 +1,6 @@
 package com.programacion4.unidad3ej3.feature.producto.dtos.response;
 
+import com.programacion4.unidad3ej3.feature.producto.models.Catalogo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
@@ -20,4 +21,6 @@ public class ProductoResponseDto {
     private Double precio;
 
     private Integer stock;
+
+    private CatalogoResponseDto catalogo;
 }

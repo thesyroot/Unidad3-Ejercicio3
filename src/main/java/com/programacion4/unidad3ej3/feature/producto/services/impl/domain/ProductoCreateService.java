@@ -2,6 +2,8 @@ package com.programacion4.unidad3ej3.feature.producto.services.impl.domain;
 
 import com.programacion4.unidad3ej3.config.BaseResponse;
 import com.programacion4.unidad3ej3.config.exceptions.BadRequestException;
+import com.programacion4.unidad3ej3.config.exceptions.ResourceNotFoundException;
+import com.programacion4.unidad3ej3.feature.producto.services.interfaces.commons.ICatalogoExistByIdService;
 import com.programacion4.unidad3ej3.feature.producto.services.interfaces.commons.IProductoCapitalizeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +30,8 @@ public class ProductoCreateService implements IProductoCreateService {
 
     private final IProductoCapitalizeService productoCapitalizeService;
 
+    private final ICatalogoExistByIdService catalogoExistByIdService;
+
     @Override
     public ProductoResponseDto create(ProductoCreateRequestDto dto) {
 
@@ -35,6 +39,10 @@ public class ProductoCreateService implements IProductoCreateService {
 
         if (productoExistByNameService.existByName(dtoCapitalized.getNombre())) {
             throw new BadRequestException("El nombre del producto ya existe");
+        }
+
+        if (catalogoExistByIdService.existById(dtoCapitalized.getIdCategoria())) {
+            throw new ResourceNotFoundException("La categoria no fue encontrada");
         }
 
         Producto productoAGuardar = ProductoMapper.toEntity(dtoCapitalized);

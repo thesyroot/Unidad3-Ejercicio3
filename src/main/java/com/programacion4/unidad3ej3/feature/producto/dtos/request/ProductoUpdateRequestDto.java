@@ -18,4 +18,6 @@ public class ProductoUpdateRequestDto {
     private Double precio;
 
     private Integer stock;
+
+    private Long categoria;
 }
